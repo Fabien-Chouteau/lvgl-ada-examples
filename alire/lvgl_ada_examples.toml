@@ -1,0 +1,16 @@
+[general]
+description = "Examples for the LVGL embedded GUI framework Ada binding"
+maintainers = ["fabien.chouteau@gmail.com"]
+maintainers-logins = ["Fabien-Chouteau"]
+tags = ["gui", "lvgl"]
+licenses = ["MIT"]
+
+project-files = ["lvgl_ada_examples.gpr"]
+
+executables = ["main"]
+
+["0.0.0"]
+origin = "file://.."
+["0.0.0".depends-on]
+lvgl_ada = "any"
+lvgl_ada_simulator = "any"
