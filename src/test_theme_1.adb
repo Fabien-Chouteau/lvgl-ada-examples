@@ -28,6 +28,7 @@ with Lv.Objx.Lmeter;
 with Lv.Objx.Led;
 with Lv.Objx.Calendar;
 with Lv.Objx.Mbox;
+with Lv.Objx.Canvas;
 
 with Lv.Color;
 with Lv.Theme;
@@ -492,6 +493,51 @@ package body Test_Theme_1 is
       Set_Top (Box, 1);
    end Create_Tab3;
 
+   Canvas_Width : constant := Horizontal_Resolution / 3;
+   Canvas_Height : constant := Vertical_Resolution / 3;
+   Canvas_Buffer : array (0 .. (Canvas_Width * Canvas_Height) - 1)
+     of Lv.Color.Color_T := (others => Lv.Color.Color_Black);
+
+   procedure Create_Tab4 (Parent : Page.Instance) is
+      Can : Canvas.Instance;
+
+      Points : aliased constant Canvas.Poly_Points :=
+        ((0, 0), (100, 0), (150, 50), (90, 30), (100, 100), (0, 100));
+
+      Rect : aliased constant Canvas.Rectangle_Points :=
+        ((10, 10), (110, 10), (110, 110), (10, 110));
+      Triangle : aliased constant Canvas.Triangle_Points :=
+        ((Canvas_Width / 2, 0),
+         (Canvas_Width - 1, Canvas_Height - 1),
+         (0, Canvas_Height - 1));
+   begin
+      Can := Canvas.Create (Parent, No_Obj);
+
+      Canvas.Set_Buffer (Can,
+                         Buf => Canvas_Buffer'Address,
+                         W   => Canvas_Width,
+                         H   => Canvas_Height,
+                         CF  =>  Canvas.LV_IMG_CF_TRUE_COLOR);
+
+      Canvas.Draw_Circle (Can,
+                          Canvas_Width / 2, Canvas_Height / 2,
+                          20, Lv.Color.Color_Aqua);
+      Canvas.Boundary_Fill4 (Can,
+                             Canvas_Width / 2, Canvas_Height / 2,
+                             Lv.Color.Color_Aqua, Lv.Color.Color_Green);
+      Canvas.Draw_Polygon (Can,
+                           Points'Unchecked_Access,
+                           Points'Length,
+                           Lv.Color.Color_Purple);
+      Canvas.Draw_Rect (Can,
+                        Rect'Unchecked_Access,
+                        Lv.Color.Color_Orange);
+
+      Canvas.Draw_Triangle (Can,
+                            Triangle'Unchecked_Access,
+                            Lv.Color.Color_Silver);
+   end Create_Tab4;
+
    procedure Init is
       Scr       : Cont.Instance;
       TV        : Tabview.Instance;
@@ -499,6 +545,7 @@ package body Test_Theme_1 is
       Tab1      : Page.Instance;
       Tab2      : Page.Instance;
       Tab3      : Page.Instance;
+      Tab4      : Page.Instance;
    begin
       Init_Themes (220);
       Lv.Theme.Set_Current (Lv.Theme.Get_Night);
@@ -515,11 +562,13 @@ package body Test_Theme_1 is
       Tab1 := Tabview.Add_Tab (TV, New_String ("Tab1"));
       Tab2 := Tabview.Add_Tab (TV, New_String ("Tab2"));
       Tab3 := Tabview.Add_Tab (TV, New_String ("Tab3"));
+      Tab4 := Tabview.Add_Tab (TV, New_String ("Canvas"));
 
       Create_Theme_Tab (Theme_Tab);
       Create_Tab1 (Tab1);
       Create_Tab2 (Tab2);
       Create_Tab3 (Tab3);
+      Create_Tab4 (Tab4);
    end Init;
 
 end Test_Theme_1;
