@@ -8,10 +8,11 @@ with LVGL_Ada_Simulator;
 procedure LVGL_Ada_Examples is
 begin
 
-   LVGL_Ada_Simulator.Start;
-   LVGL_Ada_Simulator.Add_Cursor;
+   LVGL_Ada_Simulator.Start ("LVLG Ada Examples", 60);
+   LVGL_Ada_Simulator.Add_Pointer (With_Cursor => True);
+   LVGL_Ada_Simulator.Add_Keyboard;
 
-   Test_Theme_1.Init;
+   Test_Theme_1.Init (LVGL_Ada_Simulator.Keyboard_Indev);
 
    loop
       Lv.Tasks.Handler;

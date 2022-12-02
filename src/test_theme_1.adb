@@ -29,10 +29,13 @@ with Lv.Objx.Led;
 with Lv.Objx.Calendar;
 with Lv.Objx.Mbox;
 with Lv.Objx.Canvas;
+with Lv.Group;
+with Lv.Indev;
 
 with Lv.Color;
 with Lv.Theme;
 with Lv.Font;
+with Lv.Style;
 
 with Lv.Strings; use Lv.Strings;
 
@@ -47,96 +50,6 @@ package body Test_Theme_1 is
 
    use type Int16_T;
 
-   subtype C is Character;
-
-   SYMBOL_AUDIO      : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#80#);
-   SYMBOL_VIDEO      : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#81#);
-   SYMBOL_LIST       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#82#);
-   pragma Unreferenced (SYMBOL_LIST);
-   SYMBOL_OK         : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#83#);
-   SYMBOL_CLOSE      : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#84#);
-   SYMBOL_POWER      : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#85#);
-   pragma Unreferenced (SYMBOL_POWER);
-   SYMBOL_SETTINGS   : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#86#);
-   pragma Unreferenced (SYMBOL_SETTINGS);
-   SYMBOL_TRASH      : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#87#);
-   pragma Unreferenced (SYMBOL_TRASH);
-   SYMBOL_HOME       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#88#);
-   pragma Unreferenced (SYMBOL_HOME);
-   SYMBOL_DOWNLOAD   : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#89#);
-   pragma Unreferenced (SYMBOL_DOWNLOAD);
-   SYMBOL_DRIVE      : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#8A#);
-   pragma Unreferenced (SYMBOL_DRIVE);
-   SYMBOL_REFRESH    : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#8B#);
-   pragma Unreferenced (SYMBOL_REFRESH);
-   SYMBOL_MUTE       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#8C#);
-   pragma Unreferenced (SYMBOL_MUTE);
-   SYMBOL_VOLUME_MID : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#8D#);
-   pragma Unreferenced (SYMBOL_VOLUME_MID);
-   SYMBOL_VOLUME_MAX : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#8E#);
-   pragma Unreferenced (SYMBOL_VOLUME_MAX);
-   SYMBOL_IMAGE      : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#8F#);
-   pragma Unreferenced (SYMBOL_IMAGE);
-   SYMBOL_EDIT       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#90#);
-   SYMBOL_PREV       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#91#);
-   pragma Unreferenced (SYMBOL_PREV);
-   SYMBOL_PLAY       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#92#);
-   pragma Unreferenced (SYMBOL_PLAY);
-   SYMBOL_PAUSE      : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#93#);
-   pragma Unreferenced (SYMBOL_PAUSE);
-   SYMBOL_STOP       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#94#);
-   pragma Unreferenced (SYMBOL_STOP);
-   SYMBOL_NEXT       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#95#);
-   pragma Unreferenced (SYMBOL_NEXT);
-   SYMBOL_EJECT      : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#96#);
-   pragma Unreferenced (SYMBOL_EJECT);
-   SYMBOL_LEFT       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#97#);
-   pragma Unreferenced (SYMBOL_LEFT);
-   SYMBOL_RIGHT      : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#98#);
-   pragma Unreferenced (SYMBOL_RIGHT);
-   SYMBOL_PLUS       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#99#);
-   pragma Unreferenced (SYMBOL_PLUS);
-   SYMBOL_MINUS      : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#9A#);
-   pragma Unreferenced (SYMBOL_MINUS);
-   SYMBOL_WARNING    : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#9B#);
-   pragma Unreferenced (SYMBOL_WARNING);
-   SYMBOL_SHUFFLE    : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#9C#);
-   pragma Unreferenced (SYMBOL_SHUFFLE);
-   SYMBOL_UP         : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#9D#);
-   pragma Unreferenced (SYMBOL_UP);
-   SYMBOL_DOWN       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#9E#);
-   SYMBOL_LOOP       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#9F#);
-   pragma Unreferenced (SYMBOL_LOOP);
-   SYMBOL_DIRECTORY  : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#A0#);
-   pragma Unreferenced (SYMBOL_DIRECTORY);
-   SYMBOL_UPLOAD     : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#A1#);
-   pragma Unreferenced (SYMBOL_UPLOAD);
-   SYMBOL_CALL       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#A2#);
-   SYMBOL_CUT        : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#A3#);
-   SYMBOL_COPY       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#A4#);
-   SYMBOL_SAVE       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#A5#);
-   pragma Unreferenced (SYMBOL_SAVE);
-   SYMBOL_CHARGE     : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#A6#);
-   pragma Unreferenced (SYMBOL_CHARGE);
-   SYMBOL_BELL       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#A7#);
-   SYMBOL_KEYBOARD   : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#A8#);
-   pragma Unreferenced (SYMBOL_KEYBOARD);
-   SYMBOL_GPS        : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#A9#);
-   SYMBOL_FILE       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#AA#);
-   SYMBOL_WIFI       : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#AB#);
-   SYMBOL_BATTERY_FUL : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#AC#);
-   pragma Unreferenced (SYMBOL_BATTERY_FUL);
-   SYMBOL_BATTERY_3  : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#AD#);
-   pragma Unreferenced (SYMBOL_BATTERY_3);
-   SYMBOL_BATTERY_2  : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#AE#);
-   pragma Unreferenced (SYMBOL_BATTERY_2);
-   SYMBOL_BATTERY_1  : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#AF#);
-   pragma Unreferenced (SYMBOL_BATTERY_1);
-   SYMBOL_BATTERY_EMP : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#B0#);
-   pragma Unreferenced (SYMBOL_BATTERY_EMP);
-   SYMBOL_BLUETOOTH  : constant String := C'Val (16#EF#) & C'Val (16#A0#) & C'Val (16#B1#);
-   pragma Unreferenced (SYMBOL_BLUETOOTH);
-
    Btnm_Str : aliased constant String_Array := (New_String ("1"),
                                                 New_String ("2"),
                                                 New_String ("3"),
@@ -149,6 +62,8 @@ package body Test_Theme_1 is
        with Convention => C;
 
    Theme_Roller : Roller.Instance;
+
+   Keyboard_Group : Lv.Group.Instance;
 
    procedure Create_Theme_Tab (Parent : Page.Instance);
    procedure Create_Tab1 (Parent : Page.Instance);
@@ -389,6 +304,11 @@ package body Test_Theme_1 is
       Set_Size (TA, W / 3, Vertical_Resolution / 4);
       Align (TA, No_Obj, Align_In_Top_Right, -Density_Per_Inch / 10, Density_Per_Inch / 10);
       Textarea.Set_Cursor_Type (TA, Textarea.Cursor_Block);
+      Textarea.Set_Style (TA, Textarea.Style_Sb, Lv.Style.Style_Transp);
+
+      --  Textarea get inputs from keyboard
+      Lv.Group.Add_Obj (Keyboard_Group, TA);
+      Lv.Group.Focus_Obj (TA);
 
       KB := Keyboard.Create (Parent, No_Obj);
       Set_Size (KB, 2 * W / 3, Vertical_Resolution / 3);
@@ -538,7 +458,7 @@ package body Test_Theme_1 is
                             Lv.Color.Color_Silver);
    end Create_Tab4;
 
-   procedure Init is
+   procedure Init (Keyboard_Indev : Lv.Hal.Indev.Indev_T) is
       Scr       : Cont.Instance;
       TV        : Tabview.Instance;
       Theme_Tab : Page.Instance;
@@ -550,10 +470,10 @@ package body Test_Theme_1 is
       Init_Themes (220);
       Lv.Theme.Set_Current (Lv.Theme.Get_Night);
 
+      Keyboard_Group := Lv.Group.Create;
+
       Scr := Cont.Create (No_Obj, No_Obj);
       Scr_Load (Scr);
-
-      --        Cont.set_style (Scr, T.bg);
 
       TV := Tabview.Create (Scr, No_Obj);
       Set_Size (TV, Horizontal_Resolution, Vertical_Resolution);
@@ -569,6 +489,8 @@ package body Test_Theme_1 is
       Create_Tab2 (Tab2);
       Create_Tab3 (Tab3);
       Create_Tab4 (Tab4);
+
+      Lv.Indev.Set_Group (Keyboard_Indev, Keyboard_Group);
    end Init;
 
 end Test_Theme_1;
