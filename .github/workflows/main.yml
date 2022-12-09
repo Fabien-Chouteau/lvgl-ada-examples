@@ -30,7 +30,7 @@ jobs:
           alr config --set --global user.github_login ${{github.repository_owner}}
 
           # Run Alire publish assistant
-          alr publish ${{github.server_url}}/${{github.repository}} ${{github.sha}}
+          alr -vv -d publish ${{github.server_url}}/${{github.repository}} ${{github.sha}}
 
           # If this is a release build, upload the manifest to the release
           if ["${{github.event_name}}" = "release" ]; then
