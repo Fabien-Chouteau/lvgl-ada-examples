@@ -1,6 +1,6 @@
 description = "Examples for the LVGL embedded GUI framework Ada binding"
 name = "lvgl_ada_examples"
-version = "1.0.0-dev"
+version = "1.0.0"
 executables = ["lvgl_ada_examples"]
 licenses = "MIT"
 maintainers = ["fabien.chouteau@gmail.com"]
